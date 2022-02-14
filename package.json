@@ -1,0 +1,29 @@
+{
+  "name": "wordbordapi",
+  "version": "1.0.0",
+  "description": "API for https://wordbord.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awangg/WordBordAPI.git"
+  },
+  "author": "Andy Wang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/awangg/WordBordAPI/issues"
+  },
+  "homepage": "https://github.com/awangg/WordBordAPI#readme",
+  "dependencies": {
+    "bad-words": "^3.0.4",
+    "body-parser": "^1.19.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.34",
+    "mongoose": "^6.2.1"
+  }
+}
