@@ -4,7 +4,7 @@ const Filter = require('bad-words')
 const schema = new mongoose.Schema({
     name: { type: String, required: true },
     score: { type: Number, required: true },
-    createdAt: { type: Date, expires: '86400s', default: Date.now }
+    createdAt: { type: Date, expires: '86400', default: Date.now }
 })
 
 schema.pre('save', function (next) {

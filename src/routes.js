@@ -36,6 +36,19 @@ router.get('/leaderboard', async (req, res) => {
 /**
  * POST /api/v1/leaderboard
  * 
+ * Request Body
+ * {
+ *   name: String,
+ *   score: Integer,
+ *   boardSize: Integer,
+ *   moves: [{
+ *     dir: "row" | "col",
+ *     i: Integer, - row/col being rotated
+ *     n: Integer, - rotations in positive direction
+ *     found: [String] - words found
+ *   }]
+ * }
+ * 
  * Adds a score to the leaderboard, pending validation.
  */
 router.post('/leaderboard', async (req, res) => {
@@ -44,6 +57,7 @@ router.post('/leaderboard', async (req, res) => {
         const response = await handlers.addLeaderboardScore(body)
         res.status(200).json(response)
     } catch (err) {
+        console.log(err)
         res.status(400).json({ err: err.toString() })
     }
 })
