@@ -10,7 +10,7 @@ const getWordBord = async (boardName, boardSize) => {
     const board = Array(boardSize).fill([])
     for (index in board)
         board[index] = await boards[dayIndex * boardSize + parseInt(index)].split('')
-            .slice(0, boardSize)
+            .slice(0, boardSize + 1)
 
     return board
 }
