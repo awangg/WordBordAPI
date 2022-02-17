@@ -5,6 +5,7 @@ const http = require('http')
 const express = require('express')
 const bp = require('body-parser')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const routes = require('./src/routes')
 const port = process.env.PORT || 8080
@@ -14,6 +15,7 @@ const app = express()
 const server = http.createServer(app)
 
 app.use(bp.json())
+app.use(cors())
 app.use('/api/v1', routes)
 
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).then( () => {
