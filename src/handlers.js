@@ -34,11 +34,11 @@ const addLeaderboardScore = async (req) => {
         name: req.name,
         score: req.score
     }
-    const obj = db.addScore(score)
 
-    if (!obj)
-        throw new Error("Error Adding to Leaderboard")
-    else return score
+    try {
+        await db.addScore(score)
+        return score
+    } catch (err) { throw err }
 }
 
 module.exports = {
