@@ -11,7 +11,7 @@ const fileToArray = (name) => {
 const getTodayIndex = () => {
     const adjusted = moment().tz('America/New_York') // always adjust to EST
 
-    return adjusted.dayOfYear() + 365*(adjusted.year() - 2022)
+    return adjusted.dayOfYear() + 365 * (adjusted.year() - 2022)
 }
 
 const simulateGame = async (board, moves) => {
@@ -20,8 +20,8 @@ const simulateGame = async (board, moves) => {
         return false
 
     for (let move of moves) {
-        move.dir === "row" ? rotateRow(board, move.i, move.n, boardSize) : 
-                             rotateCol(board, move.i, move.n, boardSize)
+        move.dir === "row" ? rotateRow(board, move.i, move.n, boardSize) :
+            rotateCol(board, move.i, move.n, boardSize)
         if (!checkBoard(board, move.found))
             return false
     }
@@ -44,7 +44,7 @@ const rotateRow = (board, row, n, boardSize) => {
     if (row >= boardSize)
         return
 
-    board.forEach( (element, index) => {
+    board.forEach((element, index) => {
         let c = mod(index - n, boardSize)
         newRow.push(board[row][c])
     })
@@ -56,11 +56,11 @@ const rotateCol = (board, col, n, boardSize) => {
     if (col >= boardSize)
         return
 
-    board.forEach( (element, index) => {
+    board.forEach((element, index) => {
         let r = mod(index - n, boardSize)
         newCol.push(board[r][col])
     })
-    board.forEach( (element, index) => board[index][col] = newCol[index] )
+    board.forEach((element, index) => board[index][col] = newCol[index])
 }
 
 const checkBoard = (board, words) => {
@@ -71,14 +71,14 @@ const checkBoard = (board, words) => {
         const reversed = row.slice().reverse()
         if (words.includes(row.join("")) || words.includes(reversed.join(""))) found += 1
     }
-    
+
     // Check all cols
     for (let c = 0; c < board.length; c++) {
         let word = ""
         let revWord = ""
         for (let r = 0; r < board.length; r++) {
             word += board[r][c]
-            revWord += board[board.length - r - 1][c] 
+            revWord += board[board.length - r - 1][c]
         }
         if (words.includes(word) || words.includes(revWord)) found += 1
     }
