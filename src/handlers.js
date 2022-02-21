@@ -20,7 +20,6 @@ const getLeaderboard = async () => {
 }
 
 const addLeaderboardScore = async (req) => {
-    // TODO: Game/score validation
     let size = parseInt(req.boardSize)
     let board = await getWordBord(`boards${size}`, parseInt(size))
     let validGame = await utils.simulateGame(board, req.moves)

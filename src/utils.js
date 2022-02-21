@@ -1,6 +1,9 @@
 const fs = require('fs')
 const moment = require('moment-timezone')
 
+const NUM_MOVES = 20
+const SCORE_PER_MOVE = 100
+
 const fileToArray = (name) => {
     return fs.readFileSync(`res/${name}.txt`).toString().split('\n')
 }
@@ -13,7 +16,7 @@ const getTodayIndex = () => {
 
 const simulateGame = async (board, moves) => {
     let boardSize = board.length
-    if (moves.length <= 0 || moves.length > 20)
+    if (moves.length <= 0 || moves.length > NUM_MOVES)
         return false
 
     for (let move of moves) {
@@ -28,8 +31,8 @@ const simulateGame = async (board, moves) => {
 const checkScore = async (score, moves) => {
     let computed = 0
     for (let move of moves)
-        computed += move.found.length * 100
-    return score <= computed && score % 100 == 0
+        computed += move.found.length * SCORE_PER_MOVE
+    return score <= computed && score % SCORE_PER_MOVE == 0
 }
 
 /*
