@@ -69,7 +69,7 @@ const checkBoard = (board, words) => {
     // Check all rows
     for (row of board) {
         const reversed = row.slice().reverse()
-        found += (words.includes(row.join("")) ? 1 : 0) + (words.includes(reversed.join("")) ? 1 : 0)
+        found += (words.includes(row.join("")) ? 1 : 0) + (words.includes(reversed.join("")) ? 1 : 0) - (row.join("") == reversed.join("") ? 1 : 0);
     }
 
     // Check all cols
@@ -80,7 +80,7 @@ const checkBoard = (board, words) => {
             word += board[r][c]
             revWord += board[board.length - r - 1][c]
         }
-        found += (words.includes(word) ? 1 : 0) + (words.includes(revWord) ? 1 : 0)
+        found += (words.includes(word) ? 1 : 0) + (words.includes(revWord) ? 1 : 0) - (word == revWord ? 1 : 0);
     }
 
     return found == words.length
