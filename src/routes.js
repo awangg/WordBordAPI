@@ -62,4 +62,15 @@ router.post('/leaderboard', async (req, res) => {
     }
 })
 
+router.post('/checkgame', async (req, res) => {
+    try {
+        const body = req.body
+        const response = await handlers.checkGame(body)
+        res.status(200).json(response)
+    } catch (err) {
+        console.log(err)
+        res.status(400).json({ err: err.toString() })
+    }
+})
+
 module.exports = router
