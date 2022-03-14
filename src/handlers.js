@@ -16,7 +16,7 @@ const getWordBord = async (boardName, boardSize) => {
 }
 
 const getSolution = async (soltuionsName) => {
-    const soltuions = fileToArray(boardName)
+    const soltuions = fileToArray(soltuionsName)
     const dayIndex = getTodayIndex() - 1
     if (dayIndex < 0)
         throw new Error("Couldn't find solutions")
