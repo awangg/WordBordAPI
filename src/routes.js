@@ -4,6 +4,22 @@ const router = express.Router()
 const handlers = require('./handlers')
 
 /**
+ * GET /api/v1/solutions/:size
+ * 
+ * Retrieves yesterday's solution
+ * @param size The size of the board
+ */
+router.get('/solutions/:size', async (req, res) => {
+    try {
+        const size = parseInt(req.params.size)
+        const solution = await handlers.getSolution(`solutions${size}`, size)
+        res.status(200).json(solution)
+    } catch (err) {
+        res.status(400).json({ err: err.toString() })
+    }
+})
+
+/**
  * GET /api/v1/board/:size
  * 
  * Retrieves the board of the day.

@@ -15,6 +15,16 @@ const getWordBord = async (boardName, boardSize) => {
     return board
 }
 
+const getSolution = async (soltuionsName) => {
+    const soltuions = fileToArray(boardName)
+    const dayIndex = getTodayIndex() - 1
+    if (dayIndex < 0)
+        throw new Error("Couldn't find solutions")
+
+    return soltuions[dayIndex]
+}
+
+
 const getLeaderboard = async () => {
     return db.getScores()
 }
@@ -55,6 +65,7 @@ const checkGame = async (req) => {
 
 module.exports = {
     getWordBord: getWordBord,
+    getSolution: getSolution,
     getLeaderboard: getLeaderboard,
     addLeaderboardScore: addLeaderboardScore,
     checkGame: checkGame
