@@ -15,6 +15,21 @@ const getWordBord = async (boardName, boardSize) => {
     return board
 }
 
+const getPrevBord = async (boardName, boardSize) => {
+    const boards = fileToArray(boardName)
+    const dayIndex = getTodayIndex() - 1
+    if (dayIndex < 0)
+        throw new Error("Couldn't find board")
+
+    // Generate the board
+    const board = Array(boardSize).fill([])
+    for (index in board)
+        board[index] = await boards[dayIndex * boardSize + parseInt(index)].split('')
+            .slice(0, boardSize)
+
+    return board
+}
+
 const getSolution = async (soltuionsName) => {
     const soltuions = fileToArray(soltuionsName)
     const dayIndex = getTodayIndex() - 1
@@ -65,6 +80,7 @@ const checkGame = async (req) => {
 
 module.exports = {
     getWordBord: getWordBord,
+    getPrevBord: getPrevBord,
     getSolution: getSolution,
     getLeaderboard: getLeaderboard,
     addLeaderboardScore: addLeaderboardScore,
